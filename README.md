@@ -23,6 +23,8 @@ This package uses `.agent-memory/` as a plain Git-tracked documentation folder f
 - neutral naming that works across tools
 - local caches can still stay untracked through `.gitignore`
 
+It does not generate `.chatgpt/`, and it does not generate `CHATGPT.md`.
+
 ## Installation
 
 Use with `npx`:
@@ -55,11 +57,11 @@ create-chat-gpt-repo-memory init
 CLI examples:
 
 ```bash
+npx create-chat-gpt-repo-memory
 create-chat-gpt-repo-memory init --force
 create-chat-gpt-repo-memory init --no-gitignore
-create-chat-gpt-repo-memory init --template generic
 create-chat-gpt-repo-memory init --template dotnet
-create-chat-gpt-repo-memory init --cwd ./some-project
+create-chat-gpt-repo-memory init --cwd ../some-project
 ```
 
 ## Options
@@ -83,6 +85,7 @@ AGENTS.md
   update-project-map.md
   prompts/
     fill-project-map.md
+    start-session.md
 ```
 
 It does not create `.agent-memory-local/`. That path is only added to `.gitignore`.
@@ -103,8 +106,15 @@ Template variables:
 The CLI never silently overwrites generated files.
 
 - if a file does not exist, it is created
-- if a file exists and `--force` is not set, it is skipped
+- if a file exists and `--force` is not set, it is skipped by default
 - if a file exists and `--force` is set, it is overwritten
+
+For an existing `AGENTS.md`, the CLI is more careful:
+
+- if the file does not already contain repo-memory guidance, the CLI appends a managed repo-memory instructions block instead of replacing the whole file
+- if that managed block already exists, the CLI updates just that block on later runs
+- if the existing `AGENTS.md` already contains its own repo-memory guidance and the CLI cannot safely merge it, the CLI asks whether to skip or overwrite when running interactively
+- in a non-interactive environment, that unmergeable case falls back to skip
 
 ## `.gitignore` Behavior
 
@@ -127,20 +137,27 @@ The Git-tracked memory files themselves are never ignored by this package.
 ## Notes for Codex-Style Usage
 
 - `AGENTS.md` is the root instruction file.
-- Start future coding sessions from the repo root.
+- Codex-style agents should start from the repo root so `AGENTS.md` can be discovered.
 - Keep `.agent-memory/project-map.md` concise and move detail into supporting memory files.
 
 ## Notes for ChatGPT Project Usage
 
 - Add `AGENTS.md` and `.agent-memory/` files to the repository.
-- Upload or reference these files in the ChatGPT Project as needed.
-- Start future project sessions by telling ChatGPT to read `AGENTS.md` and `.agent-memory/project-map.md`.
+- ChatGPT Projects do not automatically treat `.agent-memory/` as a special folder.
+- Upload or reference these files in the ChatGPT Project as needed, or make sure they are available in repository context.
+- Start future project sessions by telling ChatGPT to read `AGENTS.md` and the relevant `.agent-memory/` files.
 - Update `.agent-memory/` files only when durable project knowledge changes.
 
-## Recommended Next Prompt
+## Initial Map-Fill Prompt
 
 ```text
-Read .agent-memory/prompts/fill-project-map.md and execute it.
+Use AGENTS.md as your operating instructions for this repository. Then read .agent-memory/prompts/fill-project-map.md and execute it. Fill or update the .agent-memory files using only verified repository facts. Do not include secrets.
+```
+
+## Future Session-Start Prompt
+
+```text
+Use AGENTS.md as your operating instructions, then read .agent-memory/prompts/start-session.md and follow it for this task.
 ```
 
 ## Publishing
@@ -155,6 +172,38 @@ npm publish --access public
 ```bash
 npm link
 create-chat-gpt-repo-memory --cwd ../some-test-repo
+```
+
+## Remove the Package Fully
+
+If you installed the package globally, remove it with:
+
+```bash
+npm uninstall -g create-chat-gpt-repo-memory
+```
+
+If you linked it locally for development, remove the global link with:
+
+```bash
+npm unlink -g create-chat-gpt-repo-memory
+```
+
+If you also want to remove the scaffolded repo memory files from a target repository, delete:
+
+```text
+AGENTS.md
+.agent-memory/
+```
+
+Then remove the local cache ignore block from `.gitignore` if you no longer want it:
+
+```gitignore
+# Local agent memory/cache
+.agent-memory-local/
+.agent-memory/**/*.db
+.agent-memory/**/*.sqlite
+.agent-memory/**/*.sqlite3
+.agent-memory/**/*.log
 ```
 
 ## License

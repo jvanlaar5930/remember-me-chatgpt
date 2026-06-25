@@ -29,9 +29,10 @@ function printSummary(result) {
   console.log("");
   console.log("Next steps:");
   console.log("  1. Commit AGENTS.md and .agent-memory/ files.");
-  console.log("  2. In Codex, start work normally; Codex-style agents should read AGENTS.md.");
-  console.log("  3. In ChatGPT Projects, add AGENTS.md and .agent-memory/ as project files or tell ChatGPT to read them.");
-  console.log('  4. Ask: "Read .agent-memory/prompts/fill-project-map.md and execute it."');
+  console.log("  2. For Codex-style agents, start from the repo root so the agent can read AGENTS.md.");
+  console.log("  3. For ChatGPT Projects, add AGENTS.md and .agent-memory/ as project files or make sure they are available in the repository context.");
+  console.log("  4. Kick off the initial map fill with:");
+  console.log('     "Use AGENTS.md as your operating instructions for this repository. Then read .agent-memory/prompts/fill-project-map.md and execute it. Fill or update the .agent-memory files using only verified repository facts. Do not include secrets."');
 }
 
 async function runInit(options) {

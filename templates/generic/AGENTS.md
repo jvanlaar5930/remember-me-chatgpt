@@ -103,3 +103,17 @@ Project context is stored in:
 - `.agent-memory/conventions.md`
 - `.agent-memory/workflows.md`
 - `.agent-memory/update-project-map.md`
+
+## Kickoff Prompts
+
+Initial map fill:
+
+```text
+Use AGENTS.md as your operating instructions for this repository. Then read .agent-memory/prompts/fill-project-map.md and execute it. Fill or update the .agent-memory files using only verified repository facts. Do not include secrets.
+```
+
+Future session start:
+
+```text
+Use AGENTS.md as your operating instructions, then read .agent-memory/prompts/start-session.md and follow it for this task.
+```
