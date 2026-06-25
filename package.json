@@ -1,0 +1,35 @@
+{
+  "name": "create-chat-gpt-repo-memory",
+  "version": "0.1.0",
+  "description": "Scaffold Git-tracked repo memory files for ChatGPT and Codex-style coding workflows.",
+  "type": "module",
+  "bin": {
+    "create-chat-gpt-repo-memory": "./bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "templates",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "chatgpt",
+    "codex",
+    "openai",
+    "ai",
+    "agents",
+    "repository",
+    "project-map",
+    "repo-memory",
+    "developer-tools",
+    "cli"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.1.0"
+  }
+}
