@@ -1,6 +1,6 @@
 {
   "name": "create-chat-gpt-repo-memory",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Scaffold Git-tracked repo memory files for ChatGPT and Codex-style coding workflows.",
   "type": "module",
   "bin": {
