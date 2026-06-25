@@ -1,0 +1,6 @@
+# Local agent memory/cache
+.agent-memory-local/
+.agent-memory/**/*.db
+.agent-memory/**/*.sqlite
+.agent-memory/**/*.sqlite3
+.agent-memory/**/*.log

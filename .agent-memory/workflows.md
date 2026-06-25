@@ -3,8 +3,8 @@
 ## Add a New Feature
 
 1. Add or modify logic in the relevant `src/` file
-2. If adding a new CLI option, add it in `bin/cli.js` via `addOptions()` and thread it through `runInit` → `initChatGptRepoMemory`
-3. If adding a new template, add a folder under `templates/` with the same 8 files as `generic/`, register the name in `SUPPORTED_TEMPLATES` in `src/templateResolver.js`
+2. If adding a new CLI option, add it in `bin/cli.js` via `addOptions()` and thread it through `runInit` -> `initChatGptRepoMemory`
+3. If adding a new template, add a folder under `templates/` with the same 10 files as `generic/`, register the name in `SUPPORTED_TEMPLATES` in `src/templateResolver.js`
 4. Update `README.md` if the feature is user-visible
 5. Run manual test plan (see README) against a temp directory
 
@@ -27,7 +27,7 @@ node /path/to/create-chat-gpt-repo-memory/bin/cli.js --cwd /tmp/chatgpt-memory-t
 
 ## Modify Data or State-Related Code
 
-Not applicable — no database or persistent state. All state is filesystem files in the target directory.
+Not applicable - no database or persistent state. All state is filesystem files in the target directory.
 
 ## Work With Configuration and Secrets
 
@@ -55,11 +55,11 @@ create-chat-gpt-repo-memory --cwd ../some-target-repo
 
 ## Validate Before Commit
 
-1. Run `node bin/cli.js` against a fresh temp directory — check all 8 files are created
-2. Run again without `--force` — check all files are skipped, .gitignore unchanged
-3. Run with `--force` — check files are overwritten
-4. Run with `--template dotnet` — check dotnet-specific content is present
-5. Run with `--template invalid` — check error message and exit code 1
+1. Run `node bin/cli.js` against a fresh temp directory - check all 10 files are created, including `.agent-memory/prompts/metrics-opt-out.md` and `.agent-memory/prompts/metrics-opt-in.md`
+2. Run again without `--force` - check all files are skipped, .gitignore unchanged
+3. Run with `--force` - check files are overwritten
+4. Run with `--template dotnet` - check dotnet-specific content is present
+5. Run with `--template invalid` - check error message and exit code 1
 6. Check for stale references:
    ```bash
    grep -R "CHATGPT.md\|\.chatgpt\|CLAUDE.md\|\.claude\|create-claude" .

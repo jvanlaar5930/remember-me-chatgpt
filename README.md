@@ -101,6 +101,8 @@ AGENTS.md
 .agent-memory/update-project-map.md
 .agent-memory/prompts/fill-project-map.md
 .agent-memory/prompts/start-session.md
+.agent-memory/prompts/metrics-opt-out.md
+.agent-memory/prompts/metrics-opt-in.md
 ```
 
 The package does not create `.agent-memory-local/`. That path is added to `.gitignore` only.
@@ -126,6 +128,28 @@ Use AGENTS.md as your operating instructions for this repository. Then read .age
 
 ```text
 Use AGENTS.md as your operating instructions, then read .agent-memory/prompts/start-session.md and follow it for this task.
+```
+
+## Measuring Repo Memory Impact
+
+### Opting Out of Metrics
+
+Metrics are optional.
+
+To skip metrics for a session, ask:
+
+```text
+Read .agent-memory/prompts/metrics-opt-out.md and follow it for this session.
+```
+
+This only disables the terminal/chat metrics summary. It does not disable repo memory.
+
+### Opting Back In
+
+To enable metrics again for a session, ask:
+
+```text
+Read .agent-memory/prompts/metrics-opt-in.md and follow it for this session.
 ```
 
 ## Overwrite Safety
@@ -209,7 +233,13 @@ AGENTS.md exists
 .agent-memory/update-project-map.md exists
 .agent-memory/prompts/fill-project-map.md exists
 .agent-memory/prompts/start-session.md exists
+.agent-memory/prompts/metrics-opt-out.md exists
+.agent-memory/prompts/metrics-opt-in.md exists
 .gitignore contains Local agent memory/cache block
+AGENTS.md mentions metrics opt in / opt out
+README mentions opting out of metrics
+README mentions opting back in to metrics
+CLI output includes optional metrics opt-out and opt-in prompts
 ```
 
 Run it again without `--force`.
@@ -243,6 +273,15 @@ Expected:
 ```text
 dotnet-specific sections are present
 .agent-memory/prompts/start-session.md exists
+```
+
+Verify the opt-in and opt-out prompts are scaffolded:
+
+```bash
+mkdir /tmp/chatgpt-memory-metrics-opt-test
+node /path/to/create-chat-gpt-repo-memory/bin/cli.js --cwd /tmp/chatgpt-memory-metrics-opt-test
+test -f /tmp/chatgpt-memory-metrics-opt-test/.agent-memory/prompts/metrics-opt-out.md
+test -f /tmp/chatgpt-memory-metrics-opt-test/.agent-memory/prompts/metrics-opt-in.md
 ```
 
 Run against an invalid template:

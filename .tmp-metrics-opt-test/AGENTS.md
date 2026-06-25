@@ -1,4 +1,4 @@
-# Agent Instructions for {{PROJECT_NAME}}
+# Agent Instructions for .tmp-metrics-opt-test
 
 Before answering project-specific questions:
 

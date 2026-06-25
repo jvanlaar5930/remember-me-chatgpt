@@ -70,6 +70,12 @@ async function runInit(options) {
   console.log('  4. Kick off the initial map fill with:');
   console.log('     "Use AGENTS.md as your operating instructions for this repository. Then read .agent-memory/prompts/fill-project-map.md and execute it. Fill or update the .agent-memory files using only verified repository facts. Do not include secrets."');
   console.log();
+  console.log('Optional metrics opt-out:');
+  console.log('  Ask: "Read .agent-memory/prompts/metrics-opt-out.md and follow it for this session."');
+  console.log();
+  console.log('Optional metrics opt-in:');
+  console.log('  Ask: "Read .agent-memory/prompts/metrics-opt-in.md and follow it for this session."');
+  console.log();
 }
 
 addOptions(program);

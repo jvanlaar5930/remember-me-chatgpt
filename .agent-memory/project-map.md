@@ -23,8 +23,8 @@ src/gitignore.js            .gitignore read/write/idempotent update logic
 src/paths.js                resolveTargetDirectory, getPackageRoot
 src/projectName.js          getProjectName (basename of rootDir)
 src/templateResolver.js     SUPPORTED_TEMPLATES, validateTemplateName, applyTemplateVariables
-templates/generic/          Generic template files (8 files)
-templates/dotnet/           .NET-specific template files (8 files)
+templates/generic/          Generic template files (10 files)
+templates/dotnet/           .NET-specific template files (10 files)
 .agent-memory/              This project's own repo memory (meta)
 README.md                   Full usage, options, manual test plan, publishing notes
 package.json                name: create-chat-gpt-repo-memory, version: 0.1.0
@@ -42,12 +42,13 @@ package.json                name: create-chat-gpt-repo-memory, version: 0.1.0
 - Resolves target directory, calls `initChatGptRepoMemory`, prints results
 
 ### Scaffold Engine (`src/init.js`)
-- Generates 8 files per template into target directory
+- Generates 10 files per template into target directory
 - AGENTS.md merge logic: appends managed block if no existing repo-memory guidance, updates existing managed block in-place, or prompts user if conflict cannot be resolved automatically
 - Managed block delimited by HTML comments: `<!-- create-chat-gpt-repo-memory:start -->` / `<!-- create-chat-gpt-repo-memory:end -->`
 
 ### Template System (`src/templateResolver.js`, `templates/`)
 - Two templates: `generic`, `dotnet`
+- Both templates scaffold code-agnostic metrics opt-in and opt-out prompt files in `.agent-memory/prompts/`
 - Template variables: `{{PROJECT_NAME}}`, `{{TEMPLATE_NAME}}`, `{{GENERATED_BY}}`
 - `applyTemplateVariables` throws if any `{{...}}` placeholders remain unreplaced
 
@@ -78,7 +79,7 @@ package.json                name: create-chat-gpt-repo-memory, version: 0.1.0
 ## Testing and Validation
 
 - No automated test suite (no test runner, no test files found)
-- Manual test plan documented in README.md (covers create, re-run, --force, --template dotnet, invalid template, stale-term grep)
+- Manual test plan documented in README.md (covers create, re-run, --force, --template dotnet, metrics opt-in/opt-out prompt generation, invalid template, stale-term grep)
 - Validation: `node bin/cli.js` run against a temp directory
 
 ## Build, Run, and Deployment

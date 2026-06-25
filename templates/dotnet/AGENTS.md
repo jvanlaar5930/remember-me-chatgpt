@@ -127,3 +127,19 @@ Future session start:
 ```text
 Use AGENTS.md as your operating instructions, then read .agent-memory/prompts/start-session.md and follow it for this task.
 ```
+
+## Metrics Opt In / Opt Out
+
+Users can opt out of terminal-only metrics for a session with:
+
+```text
+Read .agent-memory/prompts/metrics-opt-out.md and follow it for this session.
+```
+
+Users can opt back in with:
+
+```text
+Read .agent-memory/prompts/metrics-opt-in.md and follow it for this session.
+```
+
+Opting out of metrics does not disable repo memory. It only disables the terminal/chat metrics summary.

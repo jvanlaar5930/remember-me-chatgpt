@@ -18,7 +18,9 @@ const FILES_TO_GENERATE = [
   { source: "workflows.md", target: ".agent-memory/workflows.md" },
   { source: "update-project-map.md", target: ".agent-memory/update-project-map.md" },
   { source: "prompts/fill-project-map.md", target: ".agent-memory/prompts/fill-project-map.md" },
-  { source: "prompts/start-session.md", target: ".agent-memory/prompts/start-session.md" }
+  { source: "prompts/start-session.md", target: ".agent-memory/prompts/start-session.md" },
+  { source: "prompts/metrics-opt-out.md", target: ".agent-memory/prompts/metrics-opt-out.md" },
+  { source: "prompts/metrics-opt-in.md", target: ".agent-memory/prompts/metrics-opt-in.md" }
 ];
 
 const packageRoot = getPackageRoot();
