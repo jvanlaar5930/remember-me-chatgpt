@@ -16,26 +16,6 @@ Needs verification.
 
 Needs verification.
 
-## C# Conventions
-
-Needs verification.
-
-## Dependency Injection Conventions
-
-Needs verification.
-
-## Async and CancellationToken Conventions
-
-Needs verification.
-
-## Entity Framework / Data Access Conventions
-
-Needs verification.
-
-## MSTest / xUnit / NUnit Conventions
-
-Needs verification.
-
 ## Testing Conventions
 
 Needs verification.
@@ -65,5 +45,25 @@ Needs verification.
 Needs verification.
 
 ## Documentation Conventions
+
+Needs verification.
+
+## C# Conventions
+
+Needs verification.
+
+## Dependency Injection Conventions
+
+Needs verification.
+
+## Async and CancellationToken Conventions
+
+Needs verification.
+
+## Entity Framework / Data Access Conventions
+
+Needs verification.
+
+## MSTest / xUnit / NUnit Conventions
 
 Needs verification.

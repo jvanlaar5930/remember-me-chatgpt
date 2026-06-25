@@ -1,9 +1,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { createInterface } from "node:readline/promises";
-import { fileURLToPath } from "node:url";
 import { updateGitignoreFile } from "./gitignore.js";
 import { getProjectName } from "./projectName.js";
+import { getPackageRoot } from "./paths.js";
 import { applyTemplateVariables, validateTemplateName } from "./templateResolver.js";
 
 const GENERATED_BY = "create-chat-gpt-repo-memory";
@@ -21,10 +21,7 @@ const FILES_TO_GENERATE = [
   { source: "prompts/start-session.md", target: ".agent-memory/prompts/start-session.md" }
 ];
 
-const packageRoot = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  ".."
-);
+const packageRoot = getPackageRoot();
 
 function normalizeNewlines(content) {
   return content.replace(/\r\n/g, "\n");
@@ -138,7 +135,6 @@ export async function initChatGptRepoMemory(options) {
   const template = options.template ?? "generic";
 
   validateTemplateName(template);
-  await fs.mkdir(rootDir, { recursive: true });
 
   const variables = {
     PROJECT_NAME: getProjectName(rootDir),

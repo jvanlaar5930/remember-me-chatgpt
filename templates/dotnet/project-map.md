@@ -25,18 +25,6 @@ Needs verification.
 
 Include application startup files, command-line entry points, background jobs, scheduled jobs, services, scripts, frontend entry points, test entry points, or infrastructure entry points as applicable.
 
-## .NET Projects
-
-Needs verification.
-
-For each project, capture:
-
-- Project path
-- Project type
-- Target framework
-- Main responsibility
-- Important package references
-
 ## Major Domains
 
 Needs verification.
@@ -87,6 +75,18 @@ Describe test frameworks, test locations, validation commands, linting, formatti
 Needs verification.
 
 Describe package managers, build commands, runtime commands, deployment files, CI/CD, release workflow, environment behavior, or operational concerns if discoverable.
+
+## .NET Projects
+
+Needs verification.
+
+For each project, capture:
+
+- Project path
+- Project type
+- Target framework
+- Main responsibility
+- Important package references
 
 ## Do Not Scan By Default
 
