@@ -4,6 +4,37 @@
 
 It creates a root `AGENTS.md` instruction file plus a shared `.agent-memory/` folder containing durable project memory templates. The package scaffolds structure and template content only. It does not analyze the target repository.
 
+## Quickstart
+
+### Step 1 — scaffold the files
+
+Run this inside any repository:
+
+```bash
+npx create-chat-gpt-repo-memory
+```
+
+This creates `AGENTS.md` and an `.agent-memory/` directory with template memory files, and updates `.gitignore` to exclude local agent cache files.
+
+### Step 2 — let ChatGPT fill them in
+
+Open a ChatGPT session with access to your repository and run:
+
+```
+Use AGENTS.md as your operating instructions for this repository. Then read .agent-memory/prompts/fill-project-map.md and execute it. Fill or update the .agent-memory files using only verified repository facts. Do not include secrets.
+```
+
+ChatGPT will inspect your repository and populate the memory files with your actual stack, architecture, conventions, entry points, workflows, and more.
+
+### Step 3 — commit
+
+```bash
+git add AGENTS.md .agent-memory/ .gitignore
+git commit -m "Add ChatGPT repo memory"
+```
+
+Done. Every future session that reads `AGENTS.md` and `.agent-memory/` will have full project context before doing anything else.
+
 ## Why `AGENTS.md` Instead of `CHATGPT.md`
 
 This package uses `AGENTS.md` because that is the Codex-style repository instruction convention.
